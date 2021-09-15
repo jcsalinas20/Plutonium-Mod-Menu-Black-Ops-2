@@ -52,10 +52,6 @@ onPlayerDamageSnipers( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, s
 		return iDamage;
 	}
 	
-//	DETECTAR SI TIENE ACTIVADO TRICKSHOT AIMBOT
-//		DETECTAR SI BALA A IMPACTADO CERCA DEL ENEMIGO
-//			SI LO A HECHO MATAR AL ENEMY	
-	
 	if(sMeansOfDeath == "MOD_TRIGGER_HURT" || sMeansOfDeath == "MOD_SUICIDE" || sMeansOfDeath == "MOD_FALLING" ){
 		if(eAttacker.menu.open) {
 			eAttacker closeMenu();
@@ -1041,6 +1037,7 @@ submenu(input, title)
 		self iPrintln("You ^1don't ^7have enough permissions [^1" + verificationToColor(self.menu.status[input]) + "^7]");
     }
 }
+
 
 
 

@@ -1,4 +1,3 @@
-//COMO PUEDO ENTRAR A LA INGENIERIA DES DEL GRADO SUPERIOR
 
 snipperLobby() {
 	if (level.ground_hit == 0){
@@ -2315,5 +2314,6 @@ trickshotCrosshair() {
 //		}
 //	}
 }
+
 
 
