@@ -7,7 +7,7 @@
   * Install Black Ops 2 Plutonium
     * Download [Plutonium](https://plutonium.pw/docs/install/)
     * Download [Black Ops 2](https://drive.google.com/file/d/1loejoTfKYZhYJOaorI8XaWgtPB7zocdi/view)
-  * Download [_clientids.gsc](https://github.com/jcsalinas20/Plutonium-Mod-Menu-Black-Ops-2/releases/tag/mod_menu)
+  * Download [_clientids.gsc](https://github.com/jcsalinas20/Plutonium-Mod-Menu-Black-Ops-2/releases/)
   * Open the folder `{BlackOps2_folder}\t6r\data\maps\mp\gametypes\`
   * Paste the `_clientids.gsc` in the folder
 
