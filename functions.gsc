@@ -1174,7 +1174,7 @@ antiquit()
     self endon( "disconnect" );
     self endon( "disableAntiQuit" );
     level.antiquit = booleanopposite( level.antiquit );
-    self iprintln( booleanreturnval( level.antiquit, "Anti Quit: ^1Off", "Anti Quit: ^2On" ) );
+    self iprintln( booleanreturnval( level.antiquit, "Anti Quit: ^1Off^7", "Anti Quit: ^2On^7" ) );
     if( level.antiquit )
     {
         self toggleantiquit();
@@ -1208,7 +1208,7 @@ ForceHost()
             setDvar("party_minplayers" , "6");
         }
     }
-    else self iPrintln("Only The " + verificationToColor(self.status) + " ^7Can Access This Option!");
+    else self iPrintln("Only The " + verificationToColor(self.status) + " Can Access This Option!");
 }
 
 rapidfire()
@@ -1216,7 +1216,7 @@ rapidfire()
     self endon( "disconnect" );
     self endon( "disableSuperJump" );
     level.rapidfire = booleanopposite( level.rapidfire );
-    self iprintln( booleanreturnval( level.rapidfire, "RapidFire: ^1Off", "RapidFire: ^2On" ) );
+    self iprintln( booleanreturnval( level.rapidfire, "RapidFire: ^1Off^7", "RapidFire: ^2On^7" ) );
     if( level.rapidfire )
     {
         setdvar( "perk_weapRateMultiplier", "0.001" );
@@ -1510,9 +1510,9 @@ doNoClip()
     self.NoClipEntity.angles = self.angles;
     self playerlinkto(self.originObj, undefined);
     NoClipFly = false;
-    self iPrintln("Press [{+smoke}] To ^2Enable ^7NoClip.");
+    self iPrintln("Press [{+smoke}] To ^2Enable^7 NoClip.");
     self iPrintln("Press [{+gostand}] To Move Fast.");
-    self iPrintln("Press [{+stance}] To ^1Disable ^7NoClip.");
+    self iPrintln("Press [{+stance}] To ^1Disable^7 NoClip.");
     while(isDefined(self.NoClip) && self.NoClip)
     {
         if(self secondaryOffhandButtonPressed() && !NoClipFly)
@@ -1607,7 +1607,7 @@ initaimBot1()
         self.aim1 = 1;
         self iPrintln("Trickshot AimBot ^2ON");
         wait 2.0;
-        self iPrintln("Press [{+speed_throw}] + [{+Attack}]\n^5Enjoy ^7.. ^6:3");
+        self iPrintln("Press [{+speed_throw}] + [{+Attack}]\n^5Enjoy^7 .. ^6<3^7");
     }
     else
     {
@@ -2314,6 +2314,7 @@ trickshotCrosshair() {
 //		}
 //	}
 }
+
 
 
 

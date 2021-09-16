@@ -186,14 +186,14 @@ onplayerspawned()
 	{
 		kills = getDvarInt("kills_for_last");
 		if(kills == 1)
-			self iprintlnbold("You need ^5" + kills + " ^1kill ^7to reach ^1Last");
+			self iprintlnbold("You need ^5" + kills + "^7 ^1kill^7 to reach ^1Last^7");
 		else
-			self iprintlnbold("You need ^5" + kills + " ^1kills ^7to reach ^1Last");
+			self iprintlnbold("You need ^5" + kills + "^7 ^1kills^7 to reach ^1Last^7");
 		while(self.pers["kills"] < kills){
 			wait 0.05;
 		}
 		self freezecontrols(true);
-		self iprintlnbold("You are at ^1Last");
+		self iprintlnbold("You are at ^1Last^7");
 		wait 1;
 		self freezecontrols(false);
 		self GiveMenu();
@@ -226,9 +226,9 @@ GiveMenu(){
 			{
 				self.MenuInit = true;
 				self thread MenuInit();
-				self iPrintln("Welcome to ^5Zell_zDark^7, press ^3[{+speed_throw}] ^7& ^3[{+melee}] ^7to open the menu");
-				self iPrintln("Menu edited by ^5@Zell_zDark ^7from ^5@SorexProject");
-				self iPrintln("Your status is ^6" + self.status + "^7 and your guid is ^5" + dec2hex(self getguid()));
+				self iPrintln("Welcome to ^5Zell_zDark^7, press ^3[{+speed_throw}]^7 & ^3[{+melee}]^7 to open the menu");
+				self iPrintln("Menu edited by ^5@Zell_zDark^7 from ^5@SorexProject^7");
+				self iPrintln("Your status is " + verificationToColor(player.status) + " and your guid is ^2" + dec2hex(self getguid()) + "^7");
 				self thread closeMenuOnDeath();
 				self.menu.backgroundinfo = self drawShader(level.icontest, -25, -100, 250, 1000, (0, 1, 0), 1, 0);
                 self.menu.backgroundinfo.alpha = 0;
@@ -326,9 +326,9 @@ verificationToNum(status)
 verificationToColor(status)
 {
 	if (status == "Host")
-		return "^5H^7o^5s^7t^7";
+		return "^4Host^7";
 	if (status == "Co-Host")
-		return "^5Co^7";
+		return "^5Co-Host^7";
 	if (status == "Admin")
 		return "^1Admin^7";
 	if (status == "VIP")
@@ -423,10 +423,9 @@ CreateMenu()
 	self add_menu(self.menuname, undefined, "Unverified");
 	self add_option(self.menuname, "My Player", ::submenu, "MyPlayer", "My Player" );
 	self add_menu("MyPlayer", self.menuname, "Admin");
-	guid = dec2hex(self getguid());
-	statusPlayer = verificationToColor(player.status);
 	self add_option("MyPlayer", "Get Crosshair", ::doclassbot);
-	self add_option("MyPlayer", "Get Guid", ::print_wrapper, "Your guid is ^5\"^7" + statusPlayer + "^5\"^7");
+	self add_option("MyPlayer", "Get Guid", ::print_wrapper, "Your guid is: ^2" + dec2hex(self getguid()) + "^7");
+	self add_option("MyPlayer", "Get Status", ::print_wrapper, "Your status is: " + verificationToColor(player.status));
     self add_option("MyPlayer", "Infinite Ammo", ::infiniteammo );
 	self add_option("MyPlayer", "Infinite Equipment", ::infiniteEquipment);
 	self add_option("MyPlayer", "Scorestreaks", ::give_scorestreaks);
@@ -575,13 +574,13 @@ CreateMenu()
 	
 	self add_menu("All Players", "Players", "Co-Host");
 	self add_option("Players", "All Players", ::submenu, "All Players", "All Players");
-	self add_option("All Players", "^7Freeze All", ::freezeAll, "players", true);
-	self add_option("All Players", "^7Unfreeze All", ::freezeAll, "players", false);	
-	self add_option("All Players", "^7Give Last All", ::SetScoreAll, "players", level.scorelimit-1);
-	self add_option("All Players", "^7Set Score to 0 All", ::SetScoreAll, "players", 0);
-	self add_option("All Players", "^7Kill All Player", ::KillPlayerAll, "players");	
-	self add_option("All Players", "^7Kick All Player", ::KickPlayerAll, "players");	
-	self add_option("All Players", "^7Teleport All To Crosshair", ::teleport_all_to_crosshair, "players");
+	self add_option("All Players", "Freeze All", ::freezeAll, "players", true);
+	self add_option("All Players", "Unfreeze All", ::freezeAll, "players", false);	
+	self add_option("All Players", "Give Last All", ::SetScoreAll, "players", level.scorelimit-1);
+	self add_option("All Players", "Set Score to 0 All", ::SetScoreAll, "players", 0);
+	self add_option("All Players", "Kill All Player", ::KillPlayerAll, "players");	
+	self add_option("All Players", "Kick All Player", ::KickPlayerAll, "players");	
+	self add_option("All Players", "Teleport All To Crosshair", ::teleport_all_to_crosshair, "players");
 	
 	foreach (player in level.players)
 	{
@@ -594,18 +593,18 @@ CreateMenu()
 	{
 		self add_menu("All Bots", "Players", "Co-Host");
 		self add_option("Players", "All Bots", ::submenu, "All Bots", "All Bots");
-		self add_option("All Bots", "^7Freeze All", ::freezeAll, "bots", true);
-		self add_option("All Bots", "^7Unfreeze All", ::freezeAll, "bots", false);	
-		self add_option("All Bots", "^7Give Last All", ::SetScoreAll, "bots", level.scorelimit-1);
-		self add_option("All Bots", "^7Set Score to 0 All", ::SetScoreAll, "bots", 0);
-		self add_option("All Bots", "^7Kill All Player", ::KillPlayerAll, "bots");	
-		self add_option("All Bots", "^7Kick All Player", ::KickPlayerAll, "bots");	
-		self add_option("All Bots", "^7Teleport All To Crosshair", ::teleport_all_to_crosshair, "bots");
+		self add_option("All Bots", "Freeze All", ::freezeAll, "bots", true);
+		self add_option("All Bots", "Unfreeze All", ::freezeAll, "bots", false);	
+		self add_option("All Bots", "Give Last All", ::SetScoreAll, "bots", level.scorelimit-1);
+		self add_option("All Bots", "Set Score to 0 All", ::SetScoreAll, "bots", 0);
+		self add_option("All Bots", "Kill All Player", ::KillPlayerAll, "bots");	
+		self add_option("All Bots", "Kick All Player", ::KickPlayerAll, "bots");	
+		self add_option("All Bots", "Teleport All To Crosshair", ::teleport_all_to_crosshair, "bots");
 	}
 	
 	foreach (player in level.players)
 	{
-		self add_option("Players", "[" + verificationToColor(player.status) + "^7] " + player.name, ::submenu, player.name, "[" + verificationToColor(player.status) + "^7] " + player.name);
+		self add_option("Players", "[" + verificationToColor(player.status) + "] " + player.name, ::submenu, player.name, "[" + verificationToColor(player.status) + "] " + player.name);
 		self add_menu_alt(player.name, "Players");
 		
 		if(self.status == "Host" || self.status == "Co-Host") {
@@ -615,13 +614,13 @@ CreateMenu()
 			self add_option(player.name, "^2Verify^7", ::changeVerificationMenu, player, "Verified");
 			self add_option(player.name, "^3Unverify^7", ::changeVerificationMenu, player, "Unverified");	
 		}
-		self add_option(player.name, "^7Freeze", ::freeze, player, true);
-		self add_option(player.name, "^7Unfreeze", ::freeze, player, false);	
-		self add_option(player.name, "^7Give Last", ::SetScore, player, level.scorelimit-1);
-		self add_option(player.name, "^7Set Score to 0", ::SetScore, player, 0);
-		self add_option(player.name, "^7Kill Player", ::KillPlayer, player);	
-		self add_option(player.name, "^7Kick Player", ::KickPlayer, player);	
-		self add_option(player.name, "^7Teleport To Crosshair", ::teleport_to_crosshair, player);
+		self add_option(player.name, "Freeze", ::freeze, player, true);
+		self add_option(player.name, "Unfreeze", ::freeze, player, false);	
+		self add_option(player.name, "Give Last", ::SetScore, player, level.scorelimit-1);
+		self add_option(player.name, "Set Score to 0", ::SetScore, player, 0);
+		self add_option(player.name, "Kill Player", ::KillPlayer, player);	
+		self add_option(player.name, "Kick Player", ::KickPlayer, player);	
+		self add_option(player.name, "Teleport To Crosshair", ::teleport_to_crosshair, player);
 		
 	}
 }
@@ -633,13 +632,13 @@ updatePlayersMenu()
 	
 	self add_menu("All Players", "Players", "Co-Host");
 	self add_option("Players", "All Players", ::submenu, "All Players", "All Players");
-	self add_option("All Players", "^7Freeze All", ::freezeAll, "players", true);
-	self add_option("All Players", "^7Unfreeze All", ::freezeAll, "players", false);	
-	self add_option("All Players", "^7Give Last All", ::SetScoreAll, "players", level.scorelimit-1);
-	self add_option("All Players", "^7Set Score to 0 All", ::SetScoreAll, "players", 0);
-	self add_option("All Players", "^7Kill All Player", ::KillPlayerAll, "players");	
-	self add_option("All Players", "^7Kick All Player", ::KickPlayerAll, "players");	
-	self add_option("All Players", "^7Teleport All To Crosshair", ::teleport_all_to_crosshair, "players");
+	self add_option("All Players", "Freeze All", ::freezeAll, "players", true);
+	self add_option("All Players", "Unfreeze All", ::freezeAll, "players", false);	
+	self add_option("All Players", "Give Last All", ::SetScoreAll, "players", level.scorelimit-1);
+	self add_option("All Players", "Set Score to 0 All", ::SetScoreAll, "players", 0);
+	self add_option("All Players", "Kill All Player", ::KillPlayerAll, "players");	
+	self add_option("All Players", "Kick All Player", ::KickPlayerAll, "players");	
+	self add_option("All Players", "Teleport All To Crosshair", ::teleport_all_to_crosshair, "players");
 	
 	
 	foreach (player in level.players)
@@ -653,13 +652,13 @@ updatePlayersMenu()
 	{
 		self add_menu("All Bots", "Players", "Co-Host");
 		self add_option("Players", "All Bots", ::submenu, "All Bots", "All Bots");
-		self add_option("All Bots", "^7Freeze All", ::freezeAll, "bots", true);
-		self add_option("All Bots", "^7Unfreeze All", ::freezeAll, "bots", false);	
-		self add_option("All Bots", "^7Give Last All", ::SetScoreAll, "bots", level.scorelimit-1);
-		self add_option("All Bots", "^7Set Score to 0 All", ::SetScoreAll, "bots", 0);
-		self add_option("All Bots", "^7Kill All Player", ::KillPlayerAll, "bots");	
-		self add_option("All Bots", "^7Kick All Player", ::KickPlayerAll, "bots");	
-		self add_option("All Bots", "^7Teleport All To Crosshair", ::teleport_all_to_crosshair, "bots");
+		self add_option("All Bots", "Freeze All", ::freezeAll, "bots", true);
+		self add_option("All Bots", "Unfreeze All", ::freezeAll, "bots", false);	
+		self add_option("All Bots", "Give Last All", ::SetScoreAll, "bots", level.scorelimit-1);
+		self add_option("All Bots", "Set Score to 0 All", ::SetScoreAll, "bots", 0);
+		self add_option("All Bots", "Kill All Player", ::KillPlayerAll, "bots");	
+		self add_option("All Bots", "Kick All Player", ::KickPlayerAll, "bots");	
+		self add_option("All Bots", "Teleport All To Crosshair", ::teleport_all_to_crosshair, "bots");
 	}
 	
 	foreach (player in level.players)
@@ -672,7 +671,7 @@ updatePlayersMenu()
 			self.menu.curs["Players"] = playersizefixed;
 		}
 
-		self add_option("Players", "[" + verificationToColor(player.status) + "^7] " + player.name, ::submenu, player.name, "[" + verificationToColor(player.status) + "^7] " + player.name);
+		self add_option("Players", "[" + verificationToColor(player.status) + "] " + player.name, ::submenu, player.name, "[" + verificationToColor(player.status) + "] " + player.name);
 		self add_menu_alt(player.name, "Players");
 		
 		if(self.status == "Host" || self.status == "Co-Host"){
@@ -682,13 +681,13 @@ updatePlayersMenu()
 			self add_option(player.name, "^2Verify^7", ::changeVerificationMenu, player, "Verified");
 			self add_option(player.name, "^3Unverify^7", ::changeVerificationMenu, player, "Unverified");	
 		}
-		self add_option(player.name, "^7Freeze", ::freeze, player, true);
-		self add_option(player.name, "^7Unfreeze", ::freeze, player, false);	
-		self add_option(player.name, "^7Give Last", ::SetScore, player, level.scorelimit-1);
-		self add_option(player.name, "^7Set Score to 0", ::SetScore, player, 0);
-		self add_option(player.name, "^7Kill Player", ::KillPlayer, player);	
-		self add_option(player.name, "^7Kick Player", ::KickPlayer, player);	
-		self add_option(player.name, "^7Teleport Player", ::teleport_to_crosshair, player);
+		self add_option(player.name, "Freeze", ::freeze, player, true);
+		self add_option(player.name, "Unfreeze", ::freeze, player, false);	
+		self add_option(player.name, "Give Last", ::SetScore, player, level.scorelimit-1);
+		self add_option(player.name, "Set Score to 0", ::SetScore, player, 0);
+		self add_option(player.name, "Kill Player", ::KillPlayer, player);	
+		self add_option(player.name, "Kick Player", ::KickPlayer, player);	
+		self add_option(player.name, "Teleport Player", ::teleport_to_crosshair, player);
 		
 	}
 }
@@ -701,7 +700,6 @@ add_menu_alt(Menu, prevmenu)
 
 add_menu(Menu, prevmenu, status)
 {
-	self iprintln("Satee: "+status);
     self.menu.status[Menu] = status;
 	self.menu.getmenu[Menu] = Menu;
 	self.menu.scrollerpos[Menu] = 0;
@@ -1034,9 +1032,13 @@ submenu(input, title)
     }
     else
     {
-		self iPrintln("You ^1don't ^7have enough permissions [^1" + verificationToColor(self.menu.status[input]) + "^7]");
+		self iPrintln("You ^1don't ^7have enough permissions [" + verificationToColor(self.menu.status[input]) + "]");
     }
 }
+
+
+
+
 
 
 
