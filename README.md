@@ -20,7 +20,7 @@
     * Xbox: `?? + ??`
   * Go to `My Player > Get GUID` and note the green text
   
-  ![imagen](http://imgfz.com/i/FsiyQDY.png)
+  ![imagen](https://raw.githubusercontent.com/jcsalinas20/Plutonium-Mod-Menu-Black-Ops-2/main/images/screenshot.png)
 
 ### 3. Put the GUID in the code
 
