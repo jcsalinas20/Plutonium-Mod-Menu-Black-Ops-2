@@ -10,6 +10,7 @@
   * Download [_clientids.gsc](https://github.com/jcsalinas20/Plutonium-Mod-Menu-Black-Ops-2/releases/)
   * Open the folder `{BlackOps2_folder}\t6r\data\maps\mp\gametypes\`
   * Paste the `_clientids.gsc` in the folder
+![image](https://github.com/jcsalinas20/Plutonium-Mod-Menu-Black-Ops-2/assets/128591213/9d65e7d3-098a-4525-ac0c-f49e3da3fc44)
 
 ### 2. Get your GUID
 
